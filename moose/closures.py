@@ -5,6 +5,7 @@ from enum import IntEnum, auto
 class ClosureType(IntEnum):
     Closures1PhaseNone = auto()
     Closures1PhaseSimple = auto()
+    Closures1PhaseTHM = auto()
     
 class Closure:
     def __init__(self, name = ""):
@@ -20,6 +21,11 @@ class Closures1PhaseSimple(Closure):
     def __init__(self, name):
         super().__init__(name)
         self.type = ClosureType.Closures1PhaseSimple
+
+class Closures1PhaseTHM(Closure):
+    def __init__(self, name):
+        super().__init__(name)
+        self.type = ClosureType.Closures1PhaseTHM
 
 class Closures1PhaseNone(Closure):
     def __init__(self, name):
