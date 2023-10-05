@@ -6,6 +6,7 @@ class PostProcessorTypes(IntEnum):
     NodalExtremeValue = auto()
     ElementExtremeValue = auto()    
     ElementAverageValue = auto()  
+    PressureDrop = auto()
 
 class PostProcessor():
     def __init__(self, name = "", **kwargs):
@@ -51,7 +52,17 @@ class ElementAverageValue(PostProcessor):
     def __init__(self, name = "", variable = None, block = "", **kwargs):
         super().__init__(name,**kwargs)
         self.type = PostProcessorTypes.ElementAverageValue
-    
+
+class PressureDrop(PostProcessor):
+    def __init__(self, upstream_boundary, downstream_boundary, boundary, name = "", pressure = "p", **kwargs):
+        # super().__init__(upstream_boundary, downstream_boundary, boundary,name, pressure, **kwargs)
+        super().__init__(name,**kwargs)
+        self.upstream_boundary = upstream_boundary
+        self.downstream_boundary = downstream_boundary
+        self.boundary = boundary
+        self.pressure = pressure
+        self.type = PostProcessorTypes.PressureDrop
+
 class PostProcessors():
     def __init__(self):
         self.name = "Postprocessors"
