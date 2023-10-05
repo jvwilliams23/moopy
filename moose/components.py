@@ -156,6 +156,21 @@ class InletMassFlowRateTemperature1Phase(Component):
         self.m_dot = m_dot        
         self.type = ComponentType.InletMassFlowRateTemperature1Phase
 
+class InletVelocityTemperature1Phase(Component):
+    def __init__(self, name = "", temperature = 300, input = None, \
+        vel = 0.,  **kwargs):
+        super().__init__(name,**kwargs)
+        self.T = temperature
+        if type(input) == str:
+            if ":in" in input:
+                self.input = input
+            else:
+                raise ValueError(f"input string '{input}' does not contain ':in'")
+        else:
+            self.input = f'{input.name}:in'
+        self.vel = vel        
+        self.type = ComponentType.InletVelocityTemperature1Phase
+
 class Outlet1Phase(Component):
     def __init__(self, name = "", input = None, pressure = 0, **kwargs):
         super().__init__(name, **kwargs)
