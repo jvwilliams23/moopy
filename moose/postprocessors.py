@@ -8,10 +8,8 @@ class PostProcessorTypes(IntEnum):
     ElementAverageValue = auto()  
 
 class PostProcessor():
-    def __init__(self, name = "", variable = None, block = "", **kwargs):
+    def __init__(self, name = "", **kwargs):
         self.name = name
-        self.variable = variable
-        self.block = block
 
         # set the kwargs into names        
         for arg in kwargs.keys():
@@ -40,18 +38,18 @@ class PostProcessor():
         return string
 
 class NodalExtremeValue(PostProcessor):
-    def __init__(self, name = "", variable = None, block = "", **kwargs):
-        super().__init__(name,variable,block,**kwargs)
+    def __init__(self, name = "", **kwargs):
+        super().__init__(name,**kwargs)
         self.type = PostProcessorTypes.NodalExtremeValue
 
 class ElementExtremeValue(NodalExtremeValue):
-    def __init__(self, name = "", variable = None, block = "", **kwargs):
-        super().__init__(name,variable,block,**kwargs)
+    def __init__(self, name = "", **kwargs):
+        super().__init__(name,**kwargs)
         self.type = PostProcessorTypes.ElementExtremeValue
 
 class ElementAverageValue(PostProcessor):
     def __init__(self, name = "", variable = None, block = "", **kwargs):
-        super().__init__(name,variable,block,**kwargs)
+        super().__init__(name,**kwargs)
         self.type = PostProcessorTypes.ElementAverageValue
     
 class PostProcessors():
