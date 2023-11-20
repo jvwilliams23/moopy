@@ -7,6 +7,7 @@ class ScalarType(IntEnum):
     EffectiveStrain = auto()
     Hydrostatic = auto()
     L2norm = auto()
+    VectorMagnitudeAux = auto()
     MaxPrincipal= auto()
     MidPrincipal = auto()
     MinPrincipal = auto()
@@ -179,6 +180,23 @@ class ADRankTwoAux(AuxKernel):
         string += f'variable={self.variable.name}\n'
         string += f'index_i={self.index_i}\n'
         string += f'index_j={self.index_j}\n'
+        string += '[]\n'
+        return string
+
+class VectorMagnitudeAux(AuxKernel):
+    def __init__(self, name, variable, block=None, x=None, y=None, z=None):
+        super().__init__(name, variable, block)
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __str__(self):
+        string  = f'[{self.name}]\n'
+        string += f'type=VectorMagnitudeAux\n'
+        string += f'variable={self.variable}\n'
+        string += f'x={self.x}\n'
+        string += f'y={self.y}\n'
+        string += f'z={self.z}\n'
         string += '[]\n'
         return string
 
