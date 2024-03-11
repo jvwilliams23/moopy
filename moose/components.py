@@ -100,6 +100,12 @@ class HeatTransferFromExternalAppTemperature1Phase(Component):
         self.flow_channel = flow_channel
         self.type = ComponentType.HeatTransferFromExternalAppTemperature1Phase
 
+class HeatTransferFromExternalAppHeatFlux1Phase(Component):
+    def __init__(self, name:str, flow_channel:str, **kwargs):
+        super().__init__(name, **kwargs)
+        self.flow_channel = flow_channel
+        self.type = ComponentType.HeatTransferFromExternalAppHeatFlux1Phase
+
 class HeatTransferFromSpecifiedTemperature1Phase(Component):
     def __init__(self, name:str, flow_channel:str, T_wall:float, **kwargs):
         super().__init__(name, **kwargs)
